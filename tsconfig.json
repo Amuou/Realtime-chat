@@ -4,22 +4,11 @@
 		"module": "esnext",
 		"lib": ["esnext", "DOM"],
 		"target": "esnext",
-		/**
-			svelte-preprocess cannot figure out whether you have a value or a type, so tell TypeScript
-			to enforce using \`import type\` instead of \`import\` for Types.
-		*/
 		"importsNotUsedAsValues": "error",
-		/**
-			TypeScript doesn't know about import usages in the template because it only sees the
-			script of a Svelte file. Therefore preserve all value imports. Requires TS 4.5 or higher.
-		*/
 		"preserveValueImports": true,
+		"noUncheckedIndexedAccess": true,
 		"isolatedModules": true,
 		"resolveJsonModule": true,
-		/**
-			To have warnings/errors of the Svelte compiler at the correct position,
-			enable source maps by default.
-		*/
 		"sourceMap": true,
 		"esModuleInterop": true,
 		"skipLibCheck": true,
@@ -31,8 +20,21 @@
 		"checkJs": true,
 		"paths": {
 			"$lib": ["src/lib"],
-			"$lib/*": ["src/lib/*"]
+			"$lib/*": ["src/lib/*"],
+			"$components": ["src/components"],
+			"$components/*": ["src/components/*"],
+			"$stores": ["src/stores"],
+			"$stores/*": ["src/stores/*"],
+			"$actions": ["src/actions"],
+			"$actions/*": ["src/actions/*"],
+			"$types": ["src/types"],
+			"$types/*": ["src/types/*"],
+			"$helpers": ["src/helpers"],
+			"$helpers/*": ["src/helpers/*"],
+			"$routes": ["src/routes"],
+			"$routes/*": ["src/routes/*"]
 		}
 	},
-	"include": ["src/**/*.d.ts", "src/**/*.js", "src/**/*.ts", "src/**/*.svelte"]
+	"include": ["src/**/*.d.ts", "src/**/*.js", "src/**/*.ts", "src/**/*.svelte"],
+	"extends": "./.svelte-kit/tsconfig.json"
 }
